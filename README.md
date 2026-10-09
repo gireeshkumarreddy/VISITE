@@ -52,6 +52,22 @@ Sections four onward extend the reference's style: they are not claimed to be vi
 - Ambient sound synthesized locally with Web Audio, off by default and enabled only by a user gesture.
 - Reduced-motion support, skip navigation, keyboard focus indicators, meaningful labels, and responsive portrait artwork.
 
+## Living paintings
+
+Each scene painting is redrawn every frame by a WebGL layer (`components/nature/living/`) that sits over the still image, plus an SVG layer of flying birds:
+
+- Waterfalls flow (flow-map animation with falling streaks and rising mist); lakes and pools shimmer, glint and ripple where you click.
+- Grass, plants, the traveler's scarf and cloak, and the fisherman's straw cape move in a shared wind that gusts, and that picks up when you scroll fast or sweep the cursor through it.
+- Clouds billow and thin wisps drift; the sunlit peak breathes and a slow light sweep crosses it; valley fog drifts; stars twinkle; light rays shimmer with floating dust.
+- Mouse (or idle drift, and scroll) moves a depth-mapped camera, so near grass, mid mountains and far peaks separate in 3D.
+- Characters are rigged: the traveler breathes and his hat rocks in the wind; the fisherman breathes, swings his feet, gets bites (rod dips, line follows, ripples spread) and looks up when you come close; the painted doves flutter, and new doves fly through.
+- The deer's head and neck are a cut-out, skinned mesh over a clean plate: it lowers its head to eat from the bush, chews, lifts up to look at you, flicks its ears and tail and blinks. Hover near it and it stops eating to watch you.
+- The painted cranes are replaced by an animated flock that flies on across the sky and veers around the cursor.
+
+It respects `prefers-reduced-motion` (stays the still painting), pauses off-screen, boots each scene only when it is about a screen away, lowers its render resolution automatically on slow GPUs, and falls back to the image if WebGL is unavailable. `?living-realtime` keeps simulated time in step with the clock when testing on software GL.
+
+The control maps, clean plates and deer sprites in `public/art/live/` and `components/nature/living/art-manifest.ts` are generated from the paintings by `scripts/living-art/build.py` (Python 3 with numpy, pillow and opencv-contrib-python). Region and rig coordinates live in that script; run `python scripts/living-art/build.py --preview` after changing artwork and check the overlays written to `.tmp/living-preview/`.
+
 ## Code map
 
 - `app/page.tsx` — route.

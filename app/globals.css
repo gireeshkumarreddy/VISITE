@@ -15,3 +15,14 @@
 @media(min-width:600px) and (max-width:760px){.scene-copy h2{font-size:65px}.scene-copy p{font-size:13px}.scene-copy .eyebrow{font-size:9px}.scene-copy .secondary-copy{font-size:12px}.hero-copy{padding-top:21svh}.hero-description{font-size:13px;max-width:330px}.hero-word{font-size:22vw}}
 .scene:not(.in-view):not(.hero) .particles i,.scene:not(.in-view):not(.hero) .bird,.scene:not(.in-view):not(.hero) .bird svg,.scene:not(.in-view):not(.hero) .water-motion i{animation-play-state:paused}
 @media(prefers-reduced-motion:no-preference){html.lenis{scroll-behavior:auto}}
+
+/* Living paintings (components/nature/living): WebGL scene + flying birds over the still art */
+.living-layer{position:absolute;inset:0;opacity:0;transition:opacity 1.1s ease;pointer-events:none}
+.living-layer.is-ready{opacity:1}
+.living-layer canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.living-flock{position:absolute;overflow:visible;pointer-events:none}
+.closing .living-layer canvas{filter:saturate(.8)}
+[data-living="on"] .bird-flock,[data-living="on"] .water-motion{display:none}
+@media(prefers-reduced-motion:no-preference){.reeds svg{transform-origin:50% 100%;animation:reeds-sway 6.5s ease-in-out infinite alternate}.scene:not(.in-view):not(.hero) .reeds svg{animation-play-state:paused}}
+@keyframes reeds-sway{0%{transform:skewX(-2.2deg) scaleY(.97)}50%{transform:skewX(1.2deg) scaleY(1.01)}100%{transform:skewX(-.6deg) scaleY(.99)}}
+@media(max-width:760px){.spot-deer{left:79%;top:77%}}
